@@ -1,0 +1,19 @@
+<!-- <mat-sidenav-container>
+    <mat-sidenav #sidenav position="start" fixedInViewport="true" mode="side" opened="{{ isExpanded }}">
+        <mc-side-nav (toggleMenu)="toggleMenu()" [isExpanded]="isExpanded"></mc-side-nav>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mc-top-bar></mc-top-bar>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-drawer-container class="mat-drawer-container">
+    <mat-drawer #drawer mode="side" opened="{{isExpanded}}">
+        <mc-side-nav></mc-side-nav>
+    </mat-drawer>
+    <mat-drawer-content>
+        <mc-top-bar [isExpanded]="isExpanded" (toggleMenu)="toggleMenu()"></mc-top-bar>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>

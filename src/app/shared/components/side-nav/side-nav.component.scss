@@ -1,0 +1,14 @@
+.nav-section, .list-wrapp {
+    height: 100vh;
+}
+ a[material-list-item]:hover{
+    border: none !important;
+}
+mat-icon,
+p {
+    color: #fff;
+    &:hover{ cursor: pointer;}
+}
+.logged-nav-items, .not-logged-nav-items {
+    padding-top: 50px;
+}

@@ -1,0 +1,11 @@
+mat-toolbar {
+    text-align: center;
+    position: relative;
+}
+.toggle {
+    position: absolute;
+    transform: translate(0, -50%);
+    left: 5%;
+    top: 50%;
+    text-align: center;
+}

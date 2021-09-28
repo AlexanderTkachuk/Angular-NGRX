@@ -1,0 +1,47 @@
+<ng-container *ngIf="isLoading$ | async">
+    <div class="spinner-wrapp flex justify-content-center align-items-center">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-container>
+<ng-container *ngIf="error$ | async as error">
+    <h1>{{error}}</h1>
+</ng-container>
+<ng-container *ngIf="feed$ | async as feed">
+    <mc-pagination [totalProps]="feed.articlesCount" [limitProps]="limit" [urlProps]="baseUrl"
+        [currentPageProps]="currentPage"></mc-pagination>
+    <div class="feed-cards">
+        <ng-container *ngFor="let article of feed.articles; trackBy: trackByFunction;">
+            <mat-card class="feed-card">
+
+                <mat-card-content class="feed-card-content flex justify-content-between align-items-center">
+                    <div class="feed-content-left-side flex justify-content-start align-items-center">
+                        <img [src]="article.author.image" class="feed-content-author-image">
+                        <div class="feed-content-user-info flex flex-direction-column">
+                            <a [routerLink]="['/profiles']" class="feed-header-link">{{article.author.username}}</a>
+                            <span class="created-at">{{article.createdAt | dateFormatter}}</span>
+                        </div>
+                    </div>
+                    <div class="feed-content-right-side">
+                        <button class="feed-content-is-favorited">
+                            <mat-icon aria-hidden="false">favorite</mat-icon>
+                            <span>{{article.favoritesCount}}</span>
+                        </button>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-header class="feed-card-header" (click)="routeTo(article, 'post')">
+                    <mat-card-title class="feed-card-title">{{article.title}}</mat-card-title>
+                    <mat-card-subtitle class="feed-card-subtitle">{{article.description}}</mat-card-subtitle>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <mat-chip-list>
+                        <mat-chip [selected]="tag" [value]="tag" *ngFor="let tag of article.tagList">
+                            {{tag}}
+                        </mat-chip>
+                    </mat-chip-list>
+                </mat-card-content>
+            </mat-card>
+        </ng-container>
+    </div>
+</ng-container>

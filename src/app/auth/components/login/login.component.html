@@ -1,0 +1,50 @@
+<mat-card class="flex flex-direction-column justify-content-center align-items-center">
+    <mat-card-header class="justify-content-center">
+        <mat-card-title>
+            Sign In
+        </mat-card-title>
+        <mat-card-subtitle>
+            <button [routerLink]="['/register']" mat-button color="primary">
+                Need an account?
+            </button>
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="flex flex-direction-column justify-content-center align-items-center">
+        <ng-container *ngIf="backendErrors$ | async as backendErrors">
+            <mc-backend-errors [backendErrors]="backendErrors"></mc-backend-errors>
+        </ng-container>
+        <form [formGroup]="loginForm" class="my-form">
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput placeholder="Email" name="email" type="email">
+            </mat-form-field>
+            <div
+                *ngIf="(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) || loginForm.get('email')?.dirty">
+                <mat-error class="invalid-field" *ngIf="loginForm.get('email')?.errors?.required">Email address is
+                    required</mat-error>
+                <mat-error class="invalid-field" *ngIf="loginForm.get('email')?.errors?.email">Email address is
+                    invalid</mat-error>
+            </div>
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput placeholder="Password" name="password" type="password">
+            </mat-form-field>
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+                <mat-error class="invalid-field" *ngIf="loginForm.get('password')?.errors?.required"> Password is
+                    required</mat-error>
+                <mat-error class="invalid-field" *ngIf="loginForm.get('password')?.errors?.minlength?.requiredLength">
+                    Password should be longer then
+                    {{loginForm.get('password')?.errors?.minlength?.requiredLength}} symbols. Actual length
+                    {{loginForm.get('password')?.errors?.minlength?.actualLength}}</mat-error>
+            </div>
+        </form>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button [disabled]="loginForm.invalid || (isSubmitting$ | async)" mat-raised-button (click)="register()"
+            color="primary">
+            Log In
+        </button>
+    </mat-card-actions>
+</mat-card>

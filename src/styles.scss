@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100% !important;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+mat-sidenav[style] {
+    visibility: visible !important;
+}
+.mat-drawer {
+    transform: none !important;
+}
+.primary {
+    color: #3f51b5;
+}
+.flex {
+    display: flex !important;
+}
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-direction-column {
+    flex-direction: column !important;
+}
+.justify-content-between {
+    justify-content: space-between !important;
+}
+.justify-content-center {
+    justify-content: center !important;
+}
+.justify-content-start {
+    justify-content: flex-start !important;
+}
+.justify-content-end {
+    justify-content: flex-end !important;
+}
+.align-items-center {
+    align-items: center !important;
+}
+.align-items-start {
+    align-items: flex-start !important;
+}
+.align-items-end {
+    align-items: flex-end !important;
+}

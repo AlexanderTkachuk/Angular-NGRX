@@ -1,0 +1,22 @@
+<mat-grid-list cols="4">
+    <mat-grid-tile [colspan]="3">
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab *ngIf="isLoggedIn$ | async" label="Your feed">Your feed</mat-tab>
+            <mat-tab label="Feed">
+                <mc-feed [apiUrl]="apiUrl"></mc-feed>
+            </mat-tab>
+            <mat-tab label="Second">Content 2</mat-tab>
+            <mat-tab label="Third">Content 3</mat-tab>
+        </mat-tab-group>
+    </mat-grid-tile>
+    <mat-grid-tile class="popular-tags" [colspan]="1">
+        <mat-card class="tags-card">
+            <mat-card-header class="tags-card-header">
+                <mat-card-title class="tags-card-title">Popular tags</mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="tags-card-content flex justify-content-center align-items-center">
+              <mc-tags></mc-tags>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

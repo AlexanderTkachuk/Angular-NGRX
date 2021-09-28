@@ -1,0 +1,39 @@
+.mat-card-header-text { margin: 0px !important;}
+.spinner-wrapp {
+    height: 100vh;
+    width: 100%;
+}
+mat-card {
+    margin: 15px 20px;
+    mat-card-header {
+        margin: 0 -10px;
+    }
+    mat-card-content {
+        .feed-content-right-side .feed-content-is-favorited {
+            cursor: pointer;
+        }
+        .feed-content-author-image {
+            height: 50px;
+        }
+        .feed-content-user-info {
+            margin-left: 20px;
+        }
+        
+        .feed-content-is-favorited {
+            background: transparent;
+            border: 1px solid #3f51b5;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            mat-icon {
+                width: 16px;
+                height: 16px;
+                font-size: 16px;
+                color: #3f51b5;
+                margin-right: 5px;
+            }
+        }
+    }
+    
+}

@@ -1,0 +1,31 @@
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    mat-card {
+        mat-card-header, mat-card-content, mat-card-actions {
+            width: 100% !important;
+        }
+        width: 70%;
+        height: 50%;
+        text-align: center;
+        mat-card-content {
+            width: 100%;
+            mc-backend-errors {
+                width: 70%;
+            }
+            form {
+                width: 70% !important;
+                margin-bottom: 50px;
+                mat-form-field {
+                    width: 100%;
+                }
+                .invalid-field {
+                    color: #f44336;
+                }
+            }
+        }
+    }
+}
+

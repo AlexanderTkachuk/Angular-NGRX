@@ -1,0 +1,5 @@
+<ul class="pagination flex flex-wrap">
+    <li class="pagination-item" *ngFor="let page of pages" [ngClass]="{'active': currentPageProps === page}" (click)="routerTo(page)">
+        {{page}}
+    </li>
+</ul>

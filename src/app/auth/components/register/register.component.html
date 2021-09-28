@@ -1,0 +1,61 @@
+<mat-card class="flex flex-direction-column justify-content-center align-items-center">
+    <mat-card-header class="justify-content-center">
+        <mat-card-title>
+            Sign Up
+        </mat-card-title>
+        <mat-card-subtitle>
+            <button [routerLink]="['/login']" mat-button color="primary">
+                Do you have account?
+            </button>
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="flex flex-direction-column justify-content-center align-items-center">
+        <ng-container *ngIf="backendErrors$ | async as backendErrors">
+            <mc-backend-errors [backendErrors]="backendErrors"></mc-backend-errors>
+        </ng-container>
+        <form [formGroup]="registerForm" class="my-form">
+            <mat-form-field class="full-width">
+                <mat-label>User Name</mat-label>
+                <input formControlName="username" matInput placeholder="User Name" name="fname" type="text">
+            </mat-form-field>
+            <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+                <span class="invalid-field" *ngIf="registerForm.get('username')?.errors?.required"> Name is
+                    required</span>
+                <span class="invalid-field" *ngIf="registerForm.get('username')?.errors?.minlength?.requiredLength">Name
+                    should be longer then {{registerForm.get('username')?.errors?.minlength?.requiredLength}} symbols.
+                    Actual length {{registerForm.get('username')?.errors?.minlength?.actualLength}}</span>
+            </div>
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input formControlName="email" matInput placeholder="Email" name="email" type="email">
+            </mat-form-field>
+            <div
+                *ngIf="(registerForm.get('email')?.invalid && registerForm.get('email')?.touched) || registerForm.get('email')?.dirty">
+                <span class="invalid-field" *ngIf="registerForm.get('email')?.errors?.required">Email address is
+                    required</span>
+                <span class="invalid-field" *ngIf="registerForm.get('email')?.errors?.email">Email address is
+                    invalid</span>
+            </div>
+            <mat-form-field class="full-width">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput placeholder="Password" name="password" type="password">
+            </mat-form-field>
+            <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                <span class="invalid-field" *ngIf="registerForm.get('password')?.errors?.required"> Password is
+                    required</span>
+                <span class="invalid-field"
+                    *ngIf="registerForm.get('password')?.errors?.minlength?.requiredLength">Password should be longer
+                    then {{registerForm.get('password')?.errors?.minlength?.requiredLength}} symbols. Actual length
+                    {{registerForm.get('password')?.errors?.minlength?.actualLength}}</span>
+            </div>
+        </form>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button [disabled]="registerForm.invalid || (isSubmitting$ | async)" mat-raised-button (click)="register()"
+            color="primary">
+            Sign Up
+        </button>
+    </mat-card-actions>
+</mat-card>

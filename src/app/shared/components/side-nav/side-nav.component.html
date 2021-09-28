@@ -1,0 +1,46 @@
+<section class="nav-section" [class.sidenav]="isExpanded">
+    <div class="list-wrapp flex flex-direction-column justify-content-between">
+        <ng-container *ngIf="isLoggedIn$ | async">
+            <mat-list class="logged-nav-items">
+                <a mat-list-item routerLinkActive="active-link" class="hover" (click)="navigate('/articles/new')">
+                    <mat-icon mat-list-icon>post_add</mat-icon>
+                    <p matLine>New Post</p>
+                </a>
+                <a mat-list-item routerLinkActive="active-link" class="hover" (click)="navigate('/settings')">
+                    <mat-icon mat-list-icon>settings</mat-icon>
+                    <p matLine>Settings</p>
+                </a>
+                <a mat-list-item routerLinkActive="active-link" class="hover" (click)="navigate('/global-feed')">
+                    <mat-icon mat-list-icon>feed</mat-icon>
+                    <p matLine>Feed</p>
+                </a>
+                <ng-container *ngIf="currentUser$ | async as currentUser">
+                    <a mat-list-item routerLinkActive="active-link" class="hover"
+                        (click)="navigate('/settings', currentUser.username)">
+                        <mat-icon mat-list-icon>person_outline</mat-icon>
+                        <p matLine>{{currentUser.username}}</p>
+                    </a>
+                </ng-container>
+            </mat-list>
+            <mat-list class="nav">
+                <a mat-list-item routerLinkActive="active-link" class="hover" (click)="logout()">
+                    <mat-icon mat-list-icon>logout</mat-icon>
+                    <p matLine>Log Out</p>
+                </a>
+            </mat-list>
+        </ng-container>
+
+        <ng-container *ngIf="isAnonymous$ | async">
+            <mat-list class="not-logged-nav-items">
+                <a mat-list-item routerLinkActive="active-link" class="hover" (click)="navigate('/register')">
+                    <mat-icon mat-list-icon>account_circle</mat-icon>
+                    <p matLine>Register</p>
+                </a>
+                <a mat-list-item routerLinkActive="active-link" class="hover" (click)="navigate('/login')">
+                    <mat-icon mat-list-icon>login</mat-icon>
+                    <p matLine>Login</p>
+                </a>
+            </mat-list>
+        </ng-container>
+    </div>
+</section>
